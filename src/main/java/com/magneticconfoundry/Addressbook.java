@@ -12,8 +12,11 @@ import com.magneticconfoundry.forms.SearchForm;
 import com.magneticconfoundry.databaseUtils.Entry;
 import com.magneticconfoundry.databaseUtils.Redis;
 import com.magneticconfoundry.databaseUtils.User;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -40,6 +43,14 @@ public class Addressbook extends WebPage {
         listView.setReuseItems(true);
         add(new FeedbackPanel("updateDeleteFeedback").setFilter(new ContainerFeedbackMessageFilter(listView)));
         add(listView);
+
+        add(new AjaxLink("logout") {
+            @Override
+            public void onClick(AjaxRequestTarget ajaxRequestTarget) {
+                getSession().invalidate();
+                getRequestCycle().setResponsePage(LoginPage.class);
+            }
+        });
     }
 
     public void updateList(Entry[] contacts) {

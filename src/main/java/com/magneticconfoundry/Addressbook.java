@@ -12,6 +12,7 @@ import com.magneticconfoundry.forms.SearchForm;
 import com.magneticconfoundry.databaseUtils.Entry;
 import com.magneticconfoundry.databaseUtils.Redis;
 import com.magneticconfoundry.databaseUtils.User;
+import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -20,26 +21,24 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Tyler on 5/24/2017.
- */
 public class Addressbook extends WebPage {
     private static final long serialVersionUID = 2L;
     private ListView listView;
-    User user;
+    private User user;
 
     public Addressbook(final PageParameters parameters) {
         super(parameters);
         String username = parameters.get("username").toString();
         user = Redis.getUserData(username);
-        add(new FeedbackPanel("feedback"));
-        add(new NewContactForm("newContactForm", user, this));
+        NewContactForm ncf = new NewContactForm("newContactForm", user, this);
+        add(ncf);
+        add(new FeedbackPanel("feedback").setFilter(new ContainerFeedbackMessageFilter(ncf)));
         add(new SearchForm("searchForm", user, this));
-        add(new FeedbackPanel("updateDeleteFeedback"));
         Entry[] contacts = user.getEntries();
         List<Entry> entryList = Arrays.asList(contacts);
         listView = new ContactListView("listView", entryList, user, this);
         listView.setReuseItems(true);
+        add(new FeedbackPanel("updateDeleteFeedback").setFilter(new ContainerFeedbackMessageFilter(listView)));
         add(listView);
     }
 

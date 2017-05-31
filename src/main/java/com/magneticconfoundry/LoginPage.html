@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wicket="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+
+    <form id = "loginForm" method="get" wicket:id="loginForm">
+        <fieldset>
+            <legend style="color: #F90">Login</legend>
+                <p wicket:id="loginStatus"></p>
+                <span>Username: </span><input wicket:id="username" type="text" id="username"/><br>
+                <span>Password: </span><input wicket:id="password" type="password" id="password"/>
+                <p>
+                    <input type="submit" wicket:id="submitButton" name="Login" value="Login"/>
+                    <input type="submit" wicket:id="registerButton" name="Register" value="Register"/>
+                </p>
+        </fieldset>
+    </form>
+</body>
+</html>

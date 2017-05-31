@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wicket="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Book</title>
+    <style>
+        .feedbackPanelERROR {color:red}
+    </style>
+</head>
+<body>
+
+    <div wicket:id="feedback"></div>
+    <form id="newContactForm" method="get" wicket:id="newContactForm">
+        <fieldset>
+            <legend style="color:#F90">Add Contact</legend>
+            <p wicket:id="addStatus"></p>
+            <span>*First Name: </span><input wicket:id="First Name" type="text" id="First Name" size="12"/>
+            <span>*Last Name: </span><input wicket:id="Last Name" type="text" id="Last Name" size="12"/>
+            <span>*Address: </span><input wicket:id="Address" type="text" id="Address" size="35"/>
+            <span>Email: </span><input wicket:id="Email" type="text" id="Email" size="35"/>
+            <span>Phone Number: </span><input wicket:id="Phone" type="text" id="Phone" size="16"/>
+            <input type="submit" wicket:id="addContactButton" name="Add" value="Add"/>
+        </fieldset>
+    </form>
+    <br>
+    <br>
+
+    <form id="searchForm" method="get" wicket:id="searchForm">
+        <fieldset>
+            <legend style="color:#F90">Search</legend>
+            <input wicket:id="searchInput" type="text" id="searchInput"/>
+            <input type="submit" wicket:id="searchButton" name="Search" value="Search"/>
+            <input type="submit" wicket:id="clearSearchButton" name="Clear" value="Clear"/>
+        </fieldset>
+    </form>
+    <br>
+    <br>
+
+    <div wicket:id="updateDeleteFeedback"></div>
+    <table border="1">
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <th>Address</th>
+            <th>email</th>
+            <th>Phone Number</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr wicket:id="listView">
+            <form wicket:id="contactUpdateForm" method="get" id="contactUpdateForm">
+                <td><input wicket:id="First" type="text"/></td>
+                <td><input wicket:id="Last" type="text"/></td>
+                <td><input wicket:id="Address" type="text" size="35"/></td>
+                <td><input wicket:id="Email" type="text" size="35"/></td>
+                <td><input wicket:id="Phone" type="text" size="16"/></td>
+                <td><input type="submit" wicket:id="update" name="Update" value="Update"/></td>
+                <td><input type="submit" wicket:id="delete" name="Delete" value="Delete"/></td>
+            </form>
+        </tr>
+    </table>
+
+</body>
+</html>

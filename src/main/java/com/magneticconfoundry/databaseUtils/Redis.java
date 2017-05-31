@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class Redis {
     private static final String authKey = "SometimesImakethingsweirdonpurpose";
-    private static Jedis jedis = new Jedis("192.168.0.8");
+    private static Jedis jedis = new Jedis("localhost");
 
     /*
     Since apparently exposing a redis server directly to the internet is incredibly insecure,
